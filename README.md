@@ -33,7 +33,7 @@ minepc@1.2.3.4 javaversion
 minepc@1.2.3.4 exit
 list info
 
-the victum is also the client open the victum with netbeans to control the botnet!
+open the client with netbeans!
 
 the botnet is supported for windows, linux, and maby mac but i havend tested this.
 the standard port for the precompiled server ( botnet-server.jar ) is 4600 but you can change this in the source code.

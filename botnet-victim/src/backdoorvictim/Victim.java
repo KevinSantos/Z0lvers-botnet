@@ -33,9 +33,7 @@ public class Victim implements Runnable {
     private static String ip = "";
     private static String whoami = "";
     private static String OS = System.getProperty("os.name").toLowerCase();
-    private static ArrayList users = new ArrayList();
     private static File temp;
-    //private static final double version = 0.2;
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
 
