@@ -24,7 +24,7 @@ public class Server {
     // This chat server can accept up to 1000 clients' connections
     static clientThread t[] = new clientThread[1000];
     private static File temp;
-    static boolean sponsormode = true; // true is :) false is ;( for creator.
+    static boolean sponsormode = false; // true is :) false is ;( for creator.
 
     public static void main(String args[]) {
 
