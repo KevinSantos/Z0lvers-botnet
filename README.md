@@ -13,9 +13,7 @@ things that i didn't add are Ddos or randsomeware.
 
 options that i am working on are: vnc, webcam snapshot, a keylogger, Persistence backdoor, network scan likely with nmap, passwords and cookie grap ( also skype ), video on full screen that cant be closed, mimikatz, Distributed hash cracking, microfone spying, popup for credentials, script mining.
 
-there is a option thats enabled is sponsormode that will if enabled mine for the creator but it can easly be dissabled by going in the server and change the varible sponsormode from true to false.
-
-this are the wworking options:
+this are the working options:
 list info : that will give you a detailed list of all the computers in the botnet and thee hostname, external ip, operating system, adn if on windows if it had administrator rights.
 msgbox : this will give a msgbox on the targets computer.
 download : here can you download a file from the infected computer to the server ( full path is needed )
@@ -54,6 +52,7 @@ i hope you like my botnet :D
 dear regards.
 mh123hack
 litecoin: LaLRA68RC6EdUdFFxtbkgzvmTSKRyFZndk
+
 
 DONATORS:
 
