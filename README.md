@@ -51,6 +51,7 @@ i hope you like my botnet :D
 
 dear regards.
 mh123hack
+bitcoin: 1GeJHABcDpNDRqVUNwuKgwZBLf1nYAwzmc 
 litecoin: LaLRA68RC6EdUdFFxtbkgzvmTSKRyFZndk
 
 
