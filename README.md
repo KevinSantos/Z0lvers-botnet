@@ -56,6 +56,7 @@ dear regards.
 mh123hack
 bitcoin: 1GeJHABcDpNDRqVUNwuKgwZBLf1nYAwzmc 
 litecoin: LaLRA68RC6EdUdFFxtbkgzvmTSKRyFZndk
+paypal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9GJFK4K4QEDKL
 
 
 DONATORS:
