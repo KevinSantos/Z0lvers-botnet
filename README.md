@@ -1,3 +1,6 @@
+# Z0lver
+name created by Sh4dow Gh0st
+
 It is ofical the botnet is open source :D
 
 here is a list of all the options:
@@ -38,7 +41,7 @@ open the client with netbeans!
 the botnet is supported for windows, linux, and maby mac but i havend tested this.
 the standard port for the precompiled server ( botnet-server.jar ) is 4600 but you can change this in the source code.
 
-I want to thank ( O shit waddup ) from hackflag for making a video tutorial for the botnet.
+I want to thank ( O shit waddup ) from hackflag for making a video tutorial for the botnet.d
 https://hackflag.org/forum/member.php?action=profile&uid=5209
 
 if you want your hacker name here donate or make the botnet famous.
