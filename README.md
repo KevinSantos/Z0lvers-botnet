@@ -1,4 +1,4 @@
-# Z0lver
+# Z0lvers
 name created by Sh4dow Gh0st
 
 It is ofical the botnet is open source :D
