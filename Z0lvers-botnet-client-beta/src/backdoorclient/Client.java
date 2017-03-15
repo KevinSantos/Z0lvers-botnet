@@ -35,21 +35,12 @@ public class Client implements Runnable {
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
 
-        // The default port
+        // The default port and default ip ( change localhost in your ip )
         int port_number = 4600;
         String host = "localhost";
 
         String hostname = InetAddress.getLocalHost().getHostName(); // find the hostname from computer
-        try {
-//            URL whatismyip = new URL("http://checkip.amazonaws.com"); // checkt the external ip from the computer.
-//            BufferedReader in = new BufferedReader(new InputStreamReader(
-//                    whatismyip.openStream()));
-//            ip = in.readLine();  
-            ip = "noip"; // had to be changed for video!
-
-        } catch (Exception e) {
-            ip = "noip";
-        }
+		ip = "noip";
         whoami = "Admin@" + ip;
 
         System.out.println("Connecting to " + host + " on port " + port_number + "...");
@@ -80,16 +71,16 @@ public class Client implements Runnable {
                 new Thread(new Client()).start();
 
                 while (!closed) {
-                    // lees een regel text.
+                    // read one line text.
                     int a = 'a';
                     String s = "";
                     long begin = System.currentTimeMillis();
                     do {
-                        if (System.currentTimeMillis() - begin > 10000) {
+                        if (System.currentTimeMillis() - begin > 10000) { // keepalive message.
                             begin = System.currentTimeMillis();
                             os.println("ping");
                         }
-                        if (inputLine.ready()) {
+                        if (inputLine.ready()) { // reading line.
                             a = inputLine.read();
                             if (a != 10) {
                                 s = s + (char) a;
@@ -113,7 +104,7 @@ public class Client implements Runnable {
         String responseLine;
 
         try {
-            while ((responseLine = is.readLine()) != null) {
+            while ((responseLine = is.readLine()) != null) { // this is the line witch you have written to the server and came back from the server.
                 System.out.println(responseLine);
 
             }

