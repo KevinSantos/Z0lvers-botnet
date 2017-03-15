@@ -1,7 +1,7 @@
 # Z0lvers
 name created by Sh4dow Gh0st
 
-It is ofical the botnet is open source :D
+It is offical the botnet is open source :D
 
 here is a list of all the options:
 
