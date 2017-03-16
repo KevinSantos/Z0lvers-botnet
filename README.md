@@ -55,7 +55,7 @@ i hope you like my botnet :D
 dear regards.
 mh123hack
 
-Do you wnat to donate send me a email and your name will be placed down here in big letters!
+Do you want to donate send me a email and your name will be placed down here in big letters!
 mh123hack@gmail.com
 
 
