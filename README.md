@@ -1,4 +1,7 @@
-It is ofical the botnet is open source :D
+# Z0lvers
+name created by Sh4dow Gh0st
+
+It is offical the botnet is open source :D
 
 here is a list of all the options:
 
@@ -9,13 +12,11 @@ things that are partitional completed are: selfdestruct the virus.
 the backdoor isn't seen by any viruscaner ( checked on date 11/3/2017 ).
 the botnet is written in java with netbeans.
 
-things that i didn't add are Ddos or raandsomeware.
+things that i didn't add are Ddos or randsomeware.
 
 options that i am working on are: vnc, webcam snapshot, a keylogger, Persistence backdoor, network scan likely with nmap, passwords and cookie grap ( also skype ), video on full screen that cant be closed, mimikatz, Distributed hash cracking, microfone spying, popup for credentials, script mining.
 
-there is a option thats enabled is sponsormode that will if enabled mine for the creator but it can easly be dissabled by going in the server and change the varible sponsormode from true to false.
-
-this are the wworking options:
+this are the working options:
 list info : that will give you a detailed list of all the computers in the botnet and thee hostname, external ip, operating system, adn if on windows if it had administrator rights.
 msgbox : this will give a msgbox on the targets computer.
 download : here can you download a file from the infected computer to the server ( full path is needed )
@@ -35,23 +36,33 @@ minepc@1.2.3.4 javaversion
 minepc@1.2.3.4 exit
 list info
 
-the victum is also the client open the victum with netbeans to control the botnet!
+open the client with netbeans!
 
 the botnet is supported for windows, linux, and maby mac but i havend tested this.
 the standard port for the precompiled server ( botnet-server.jar ) is 4600 but you can change this in the source code.
+
+I want to thank ( O shit waddup ) from hackflag for making a video tutorial for the botnet.d
+https://hackflag.org/forum/member.php?action=profile&uid=5209
+
+if you want your hacker name here donate or make the botnet famous.
+retweet: https://twitter.com/martinhermens1/status/839979932541415424
+if you retweet this then your name will be placed down here.
+
+we are over 100 downloads if this botnet becomes famous and get donations than i will make updates on request.
 
 i hope you like my botnet :D
 
 dear regards.
 mh123hack
-litecoin: LaLRA68RC6EdUdFFxtbkgzvmTSKRyFZndk
 
-if you want your hacker name here donate or make the botnet famous.
-retweet: https://twitter.com/martinhermens1/status/839979932541415424
+bitcoin: 1LRPMWq4Jyp4QrJj9j1yBqJAFQtJAi5HLP
+
 
 DONATORS:
 
 
-
-
 SHARES:
+
+TrollForums, 
+Sh4dow gh0st,
+Dancing Lama
