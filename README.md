@@ -61,7 +61,8 @@ bitcoin: 1LRPMWq4Jyp4QrJj9j1yBqJAFQtJAi5HLP
 
 
 DONATORS:
-![Radje13](https://hackflag.org/forum/member.php?action=profile&uid=5835)
+[Radje13](https://hackflag.org/forum/member.php?action=profile&uid=5835)
+
 
 
 SHARES:
